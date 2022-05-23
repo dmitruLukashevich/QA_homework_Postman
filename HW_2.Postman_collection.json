@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "12c82700-8a07-4ca7-835b-e3a3900882e4",
+		"name": "Homework_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "First_request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(\"This is the first responce from server!\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5005/first",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"first"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User_info_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//1. Отправить запрос.\r",
+							"//2. Статус код 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//3. Спарсить response body в json.\r",
+							"let dataFromJson = pm.response.json();\r",
+							"\r",
+							"//4. Проверить, что name в ответе равно name s request (name вбить руками.)\r",
+							"pm.test(\"Name in response:\", function () {\r",
+							"    pm.expect(dataFromJson.name).to.deep.equal('Dima');\r",
+							"});\r",
+							"\r",
+							"//5. Проверить, что age в ответе равно age s request (age вбить руками.)\r",
+							"pm.test(\"Age in response:\",function(){\r",
+							"    pm.expect(dataFromJson.age).to.deep.equal('31')\r",
+							"})\r",
+							"\r",
+							"//6. Проверить, что salary в ответе равно salary s request (salary вбить руками.)\r",
+							"pm.test(\"Salary in response:\", function(){\r",
+							"    pm.expect(dataFromJson.salary).to.deep.equal(1000);\r",
+							"})\r",
+							"\r",
+							"//7. Спарсить request.\r",
+							"\r",
+							"let parseRequest = request.data;\r",
+							"console.log(parseRequest);\r",
+							"\r",
+							"//8. Проверить, что name в ответе равно name s request (name забрать из request.)\r",
+							"pm.test(\"Name in response == name from request \", function(){\r",
+							"    pm.expect(dataFromJson.name).to.deep.equal(request.data.name);\r",
+							"})\r",
+							"\r",
+							"//9. Проверить, что age в ответе равно age s request (age забрать из request.)\r",
+							"\r",
+							"pm.test(\"age in response == age from request\", function(){\r",
+							"    pm.expect(dataFromJson.age).to.deep.equal(request.data.age);\r",
+							"})\r",
+							"\r",
+							"//10. Проверить, что salary в ответе равно salary s request (salary забрать из request.)\r",
+							"\r",
+							"pm.test(\"salary in response == salary from request\", function(){\r",
+							"    pm.expect(dataFromJson.salary).to.deep.equal(+request.data.salary); // '+' приводит к числу \r",
+							"})\r",
+							"\r",
+							"//11. Вывести в консоль параметр family из response.\r",
+							"\r",
+							"console.log(dataFromJson.family);\r",
+							"\r",
+							"//12. Проверить что u_salary_1_5_year в ответе равно salary*4 (salary забрать из request)\r",
+							"\r",
+							"pm.test(\"salary_1_5_year in response == salary*4 from request\", function(){\r",
+							"    pm.expect(dataFromJson.family.u_salary_1_5_year).to.deep.equal(request.data.salary*4); \r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Dima",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "31",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "1000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5005/user_info_3",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"user_info_3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
