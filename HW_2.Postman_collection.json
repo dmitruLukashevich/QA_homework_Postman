@@ -247,11 +247,15 @@
 					]
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/object_info_3?name=Dima&age=31&salary=3000",
+					"raw": "http://162.55.220.72:5005/object_info_3?name=Dima&age=31&salary=3000",
+					"protocol": "http",
 					"host": [
-						"{{url}}"
+						"162",
+						"55",
+						"220",
+						"72"
 					],
-					"port": "{{port}}",
+					"port": "5005",
 					"path": [
 						"object_info_3"
 					],
@@ -377,11 +381,15 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/object_info_4?name=Dzmitry&age=31&salary=5000",
+					"raw": "http://162.55.220.72:5005/object_info_4?name=Dzmitry&age=31&salary=5000",
+					"protocol": "http",
 					"host": [
-						"{{url}}"
+						"162",
+						"55",
+						"220",
+						"72"
 					],
-					"port": "{{port}}",
+					"port": "5005",
 					"path": [
 						"object_info_4"
 					],
@@ -424,7 +432,7 @@
 							"console.log(jsonData);\r",
 							"\r",
 							"// 7. Спарсить request.\r",
-							"let reqParse = pm.request.url.query.toObject()\r",
+							"let reqParse = request.data;\r",
 							"console.log(reqParse);\r",
 							"\r",
 							"// 8. Проверить, что json response имеет параметр start_qa_salary\r",
@@ -514,30 +522,40 @@
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
-				"url": {
-					"raw": "{{url}}: {{port}}/object_info_2?name={{name}}&age={{age}}&salary={{salary}}",
-					"host": [
-						"{{url}}"
-					],
-					"port": " {{port}}",
-					"path": [
-						"object_info_2"
-					],
-					"query": [
+				"body": {
+					"mode": "formdata",
+					"formdata": [
 						{
 							"key": "name",
-							"value": "{{name}}"
+							"value": "Dzmitry",
+							"type": "text"
 						},
 						{
 							"key": "age",
-							"value": "{{age}}"
+							"value": "31",
+							"type": "text"
 						},
 						{
 							"key": "salary",
-							"value": "{{salary}}"
+							"value": "2000",
+							"type": "text"
 						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5005/user_info_2",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"user_info_2"
 					]
 				}
 			},
